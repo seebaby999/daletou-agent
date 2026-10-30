@@ -6,18 +6,14 @@
 
 import argparse
 import random
-import sys
-from itertools import combinations
 from typing import List, Tuple
-
-# 全组合太大，不能枚举。使用拒绝采样 + 滤网。
 
 FRONT = list(range(1, 36))
 BACK = list(range(1, 13))
 
 
 def is_valid_front(nums: List[int]) -> bool:
-    """滤网：奇偶、大小、和值、跨度"""
+    """滤网：奇偶、大小、和值、跨度、区间"""
     odds = sum(1 for n in nums if n % 2 == 1)
     if odds not in (2, 3):
         return False
@@ -30,7 +26,6 @@ def is_valid_front(nums: List[int]) -> bool:
     span = max(nums) - min(nums)
     if not (15 <= span <= 30):
         return False
-    # 区间覆盖
     zones = [0, 0, 0]
     for n in nums:
         if n <= 12:
@@ -39,15 +34,12 @@ def is_valid_front(nums: List[int]) -> bool:
             zones[1] += 1
         else:
             zones[2] += 1
-    if max(zones) >= 4:  # 过度集中
+    if max(zones) >= 4:
         return False
     return True
 
 
 def is_valid_back(nums: List[int]) -> bool:
-    odds = sum(1 for n in nums if n % 2 == 1)
-    if odds not in (0, 1, 2):  # 宽松，优先1
-        pass
     s = sum(nums)
     if not (6 <= s <= 20):
         return False
@@ -62,7 +54,6 @@ def sample_front(rng: random.Random, use_filter: bool) -> List[int]:
         nums = sorted(rng.sample(FRONT, 5))
         if not use_filter or is_valid_front(nums):
             return nums
-    # fallback
     return sorted(rng.sample(FRONT, 5))
 
 

@@ -17,7 +17,7 @@ python generate.py --mode filter --count 2 --seed 42
 ```
 
 - `random`：全空间均匀随机（数学最优）
-- `filter`：应用奇偶/大小/和值/跨度滤网后再随机（仅缩小到历史上密度较高区域，概率不变）
+- `filter`：应用奇偶/大小/和值/跨度/区间滤网后再随机（仅缩小到历史上密度较高区域，概率不变）
 
 ## Skill
 对应 Grok skill：`daletou-selector`
