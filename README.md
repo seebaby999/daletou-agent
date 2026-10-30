@@ -1,2 +1,26 @@
-# daletou-agent
-超级大乐透选号 Agent：数学滤网 + 概率分析 + 可复现生成脚本。纯娱乐，不保证中奖。Honest Super Lotto number selector with mathematical filters.
+# 超级大乐透选号 Agent
+
+数学 + 概率视角的大乐透选号工具。**绝不提高真实中奖概率**。
+
+## 核心事实
+- 总组合：C(35,5) × C(12,2) = **21,425,712**
+- 一等奖单注概率：**1 / 21,425,712**
+- 二注冲一等奖概率 ≈ **1 / 10,712,856**
+- 历史数据对未来**无预测力**（独立同分布）
+- 期望收益为负（返奖率约 51%）
+
+## 使用
+
+```bash
+python generate.py --mode random --count 2
+python generate.py --mode filter --count 2 --seed 42
+```
+
+- `random`：全空间均匀随机（数学最优）
+- `filter`：应用奇偶/大小/和值/跨度滤网后再随机（仅缩小到历史上密度较高区域，概率不变）
+
+## Skill
+对应 Grok skill：`daletou-selector`
+
+## 免责声明
+本项目仅供学习与娱乐。请理性购彩，量力而行。任何声称“可提高中奖率”的系统都是伪科学。
