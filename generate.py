@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""大乐透二柱，种子锁定 2026-10-31。与网页同一算法。"""
+"""大乐透二柱，种子锁定 2026-11-04。与网页同一算法。"""
 
 import argparse
 
-TARGET = "2026-10-31"
+TARGET = "2026-11-04"
 FRONT = list(range(1, 36))
 BACK = list(range(1, 13))
 
@@ -113,10 +113,10 @@ def generate(mode: str, salt: int):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--mode", choices=["filter", "random"], default="filter")
+    p.add_argument("--mode", choices=["filter", "random"], default="random")
     p.add_argument("--salt", type=int, default=0)
     args = p.parse_args()
-    print(f"指向 {TARGET} 周六 | {args.mode} | #{args.salt}")
+    print(f"指向 {TARGET} 周三 | {args.mode} | #{args.salt}")
     for i, (front, back) in enumerate(generate(args.mode, args.salt), 1):
         odds = sum(n % 2 for n in front)
         print(
